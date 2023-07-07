@@ -1,0 +1,56 @@
+<div id="bootstrap-theme" crm-dialog="crmSearchTask">
+  <form name="crmCustomangactionsearchkit" ng-controller="customangactionsearchkit as $ctrl">
+
+    <div>
+      <h2>Modify birth field of {{ $ctrl.entityTitle }}</h2>
+    </div>
+    <!-- data id of contact selected in searchkit -->
+    ids : {{ $ctrl.ids }}
+    model : {{ model.ids }}
+    <!-- end -->
+
+    <div>
+      <h3>Choose birth date</h3>
+      <label>Date picker</label>
+      <!-- datepicker -->
+      <input crm-ui-datepicker="{time: false, date: 'dd-mm-yy'}"
+             ng-change="$ctrl.getEventDate($ctrl.todayDpicker)"
+             ng-model="$ctrl.todayDpicker"
+             ng-disabled="$ctrl.run"
+             id="datepicker-default"
+             placeholder="Choose a date"
+      />
+      <!--  end datepicker -->
+
+      <div class="wrapper-date">
+        <div ng-if="$ctrl.selectDatePicker" class="today-selected">date selected : {{ $ctrl.todayDpicker|date:'dd/MM/yyyy' }}</div>
+        <div ng-if="!$ctrl.selectDatePicker" class="today-value">today : {{ $ctrl.today|date:'dd/MM/yyyy' }}</div>
+      </div>
+    </div>
+
+    <!-- select with autocomplete API -->
+    <div>
+      <h3>Choose contact</h3>
+      <label>Select Héro contact</label>
+      <input crm-autocomplete="'Contact'" crm-autocomplete-params="{filters: {contact_sub_type: 'H_ro'}}" ng-change="$ctrl.getContactSelectAutocomplete($ctrl.autocomplete)" ng-model="$ctrl.autocomplete" placeholder="New value">
+    </div>
+    <!-- end select with autocomplete API -->
+
+    <!--
+    ng-repeat in array of values
+    <div ng-repeat="value in $ctrl.values">
+      Nom du contact : {{ value.display_name }}
+    </div>
+    -->
+
+    <!-- select with autocomplete -->
+    <div class="form-inline">
+      <label>New select</label>
+      <input class="form-control twenty" style="width: 15em;" ng-model="$ctrl.add" ng-change="$ctrl.getValueSelectChange($ctrl.add)" crm-ui-select="{data: $ctrl.availableFields, placeholder: ts('New value')}"/>
+    </div>
+    <!-- end select with autocomplete -->
+
+    <crm-dialog-button text="ts('Cancel')" icons="{primary: 'fa-times'}" on-click="$ctrl.cancel()"></crm-dialog-button>
+    <crm-dialog-button text="ts('Update Birth value %1', {1: $ctrl.entityTitle})" icons="{primary: $ctrl.run ? 'fa-spin fa-spinner' : 'fa-check'}" on-click="$ctrl.save()" disabled="(!$ctrl.values.length && !$ctrl.contactHero.length) || !crmCustomangactionsearchkit.$valid" ></crm-dialog-button>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+/* Add any CSS rules for Angular module "crmCustomangactionsearchkit" */
+.today-value {
+    display: block;
+    padding: 5px;
+    background-color: #0c55da;
+    color: #ffffff;
+    width: fit-content;
+    border-radius: 3px;
+}
+
+.wrapper-date {
+    margin-top: 10px;
+}
