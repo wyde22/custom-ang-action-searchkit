@@ -50,6 +50,21 @@
     </div>
     <!-- end select with autocomplete -->
 
+    <div class="form-input">
+      <label>Simple input</label>
+      <p>You have selected the contact with identifiant</p>
+      <input type="text" ng-model="$ctrl.contactHero">
+    </div>
+
+    <div class="form-checkbox">
+      <label>Simple input checkbox</label>
+      <input type="checkbox" ng-change="$ctrl.getCheckboxInput($ctrl.checkboxModel.value1)" ng-model="$ctrl.checkboxModel.value1">
+
+      <div ng-if="!$ctrl.checkboxModel.value1">valeur checkboxe : {{ $ctrl.checkboxModel.value1 }}</div>
+      <div ng-if="$ctrl.checkboxModel.value1">valeur checkboxe : {{ $ctrl.checkboxModel.value1 }}</div>
+      <p>{{ $ctrl.getCheckboxInput($ctrl.checkboxModel.value1) }}</p>
+    </div>
+
     <crm-dialog-button text="ts('Cancel')" icons="{primary: 'fa-times'}" on-click="$ctrl.cancel()"></crm-dialog-button>
     <crm-dialog-button text="ts('Update Birth value %1', {1: $ctrl.entityTitle})" icons="{primary: $ctrl.run ? 'fa-spin fa-spinner' : 'fa-check'}" on-click="$ctrl.save()" disabled="(!$ctrl.values.length && !$ctrl.contactHero.length) || !crmCustomangactionsearchkit.$valid" ></crm-dialog-button>
   </form>

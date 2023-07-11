@@ -21,6 +21,13 @@
         this.contactHero = null;
         this.add = null;
         this.selectValue = null;
+        this.check = null;
+        this.message = '';
+
+        // set value checkbox
+        $scope.checkboxModel = {
+            value1 : true,
+        };
 
         // set default date in date picker
         // CiviCRM format datepicker. For set the field it's necessary to apply $filter of angular
@@ -82,9 +89,23 @@
             return this.contactHero = contact;
         }
 
+        // retrieve value on change in normal select with autocomplete
         this.getValueSelectChange = function(contact) {
             return this.selectValue = contact;
         }
+        // end function
+
+        // retrieve value on change checkbox
+        this.getCheckboxInput = function($check) {
+            if($check) {
+                this.message = 'Checkbox activée !!';
+            } else {
+                this.message = 'Checkbox désactivée !!'
+            }
+
+            return this.message;
+        }
+        // end function
 
         // Save the data for change for example the birth date of contact
         // selected in element autocomplete select
