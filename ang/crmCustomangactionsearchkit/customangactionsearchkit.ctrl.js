@@ -29,6 +29,16 @@
             value1 : true,
         };
 
+        crmApi4('Contact', 'get', {
+            select: ["birth_date"],
+            where: [["id", "=", 53]],
+        }).then(function(birthDate) {
+            // do something with contacts array
+            ctrl.todayDpicker = birthDate[0].birth_date;
+        }, function(failure) {
+            // handle failure
+        });
+
         // set default date in date picker
         // CiviCRM format datepicker. For set the field it's necessary to apply $filter of angular
         // format date : english format
